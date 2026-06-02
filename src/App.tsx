@@ -78,9 +78,8 @@ export const App = () => {
           className="flex items-center gap-3 bg-linear-to-br from-slate-800 to-slate-600 px-4 py-5 text-white"
           style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}
         >
-          <DashboardOutlined style={{ fontSize: 20, flexShrink: 0 }} />
           {!collapsed && (
-            <span className="truncate text-sm font-semibold leading-tight">
+            <span className="truncate text-2xl font-semibold leading-tight">
               {APP_NAME}
             </span>
           )}
