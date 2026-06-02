@@ -52,12 +52,6 @@ export const DashboardPage = () => {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-        <Typography.Title level={4} className="m-0!">
-          Tổng quan hệ thống
-        </Typography.Title>
-      </div>
-
       <div style={{ display: 'flex', flexDirection: 'row', gap: 16 }}>
         <Card className="shadow-sm" style={{ flex: 1, minWidth: 0 }}>
           <Statistic title="Tổng học viên" value={stats.studentsCount} />
