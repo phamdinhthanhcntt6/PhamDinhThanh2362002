@@ -25,6 +25,7 @@ import {
   TABLE_PAGE_SIZE,
 } from '../shared/constants'
 import type { Course, CourseStatus } from '../shared/types'
+import { normalizeForSearch } from '../shared/validation'
 
 const statusOptions: { value: CourseStatus; label: string }[] = [
   { value: 'open', label: 'Mở' },
@@ -48,9 +49,9 @@ export const CoursesPage = () => {
   const [form] = Form.useForm<CourseInput>()
 
   const filtered = useMemo(() => {
-    const q = debouncedQuery.trim().toLowerCase()
+    const q = normalizeForSearch(debouncedQuery)
     if (!q) return courses
-    return courses.filter((c) => c.name.toLowerCase().includes(q))
+    return courses.filter((c) => normalizeForSearch(c.name).includes(q))
   }, [courses, debouncedQuery])
 
   const openCreate = () => {

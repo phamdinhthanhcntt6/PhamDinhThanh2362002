@@ -10,7 +10,7 @@ import {
   TABLE_PAGE_SIZE,
 } from '../shared/constants'
 import type { Student } from '../shared/types'
-import { isValidEmail, isValidPhone } from '../shared/validation'
+import { isValidEmail, isValidPhone, normalizeForSearch } from '../shared/validation'
 
 export const StudentsPage = () => {
   const { students, addStudent, updateStudent, removeStudent } = useStudents()
@@ -22,10 +22,10 @@ export const StudentsPage = () => {
   const [form] = Form.useForm<StudentInput>()
 
   const filtered = useMemo(() => {
-    const q = debouncedQuery.trim().toLowerCase()
+    const q = normalizeForSearch(debouncedQuery)
     if (!q) return students
     return students.filter((s) =>
-      `${s.fullName} ${s.email} ${s.phone}`.toLowerCase().includes(q),
+      normalizeForSearch(`${s.fullName} ${s.email} ${s.phone}`).includes(q),
     )
   }, [debouncedQuery, students])
 
